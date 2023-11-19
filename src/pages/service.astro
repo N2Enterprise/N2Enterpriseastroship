@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "@astrojs/image/components";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+
+// Filter team entries with 'draft: false' & date before current date
+const publishedTeamMembers = await getCollection("team", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+---
+
+<Layout title="About">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">About</Fragment>
+      <Fragment slot="desc">We are a small passionate team.</Fragment>
+    </Sectionhead>
+
+    Our Consulting Services: Offering hands-on participation in software development, specializing in full-stack responsive web application development, microservice architecture, and agile software development. Leveraging experience gained at UKG, we bring expertise in the integration of mobile apps and artificial intelligence support for streamlined operations.Contact: Ready to discuss how our hands-on experience, including a successful tenure at UKG, can benefit your projects? Contact us at [provide email address] or use our convenient contact form.This version provides a concise overview of your experience, expertise, and services while highlighting your valuable contribution at UKG. Feel free to make further adjustments to align it with your specific preferences and additional details about your consulting services.
+   <!--<div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+      {
+        publishedTeamMembers.map((teamMemberEntry) => (
+          <div class="group">
+            <div class="w-full aspect-square">
+            
+            </div>
+
+            <div class="mt-4 text-center">
+              <h2 class="text-lg text-gray-800">
+                {teamMemberEntry.data.name}
+              </h2>
+              <h3 class="text-sm text-slate-500">
+                {teamMemberEntry.data.title}
+              </h3>
+            </div>
+          </div>
+        ))
+      }
+    </div>-->
+  </Container>
+</Layout>
